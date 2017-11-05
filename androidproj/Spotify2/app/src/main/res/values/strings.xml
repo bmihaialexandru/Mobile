@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Spotify2</string>
+    <string name="proposeTitle">Propose a song</string>
+    <string name="name">Name</string>
+    <string name="artist">Artist / Band</string>
+    <string name="emailResponse">Send me a confirmation email</string>
+    <string name="submitButtonText">Submit</string>
+    <string name="songList">List of songs</string>
+    <string name="title_activity_details">Details</string>
+    <string name="detailsTitle">Update A Song</string>
+    <string name="proposeButtonText">Propose A Song</string>
+</resources>
