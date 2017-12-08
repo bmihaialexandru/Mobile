@@ -7,6 +7,8 @@
     <string name="submitButtonText">Submit</string>
     <string name="songList">List of songs</string>
     <string name="title_activity_details">Details</string>
-    <string name="detailsTitle">Update A Song</string>
+    <string name="detailsTitle">Details</string>
     <string name="proposeButtonText">Propose A Song</string>
+    <string name="deleteButtonText">Delete</string>
+    <string name="startApp">Start App</string>
 </resources>

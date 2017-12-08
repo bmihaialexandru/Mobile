@@ -39,6 +39,11 @@
             android:layout_width="fill_parent">
         </EditText>
 
+        <NumberPicker
+            android:id="@+id/selectGenre"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
         <Button
             android:id="@+id/SubmitButton"
             android:layout_height="wrap_content"
@@ -46,6 +51,19 @@
             android:onClick="submitUpdate"
             android:layout_width="fill_parent">
         </Button>
+
+        <Button
+            android:id="@+id/DeleteButton"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteButtonText"
+            android:onClick="deleteSong"
+            android:layout_width="fill_parent">
+        </Button>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

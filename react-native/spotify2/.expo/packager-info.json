@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 6372,
-  "expoServerNgrokUrl": "https://hr-duk.bmihaialexandru.spotify2.exp.direct",
-  "packagerNgrokUrl": "https://packager.hr-duk.bmihaialexandru.spotify2.exp.direct",
-  "ngrokPid": 22700
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

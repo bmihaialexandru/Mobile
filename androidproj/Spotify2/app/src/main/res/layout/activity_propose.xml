@@ -35,6 +35,11 @@
             android:layout_width="fill_parent">
         </EditText>
 
+        <NumberPicker
+            android:id="@+id/selectGenre"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
         <CheckBox
             android:id="@+id/EmailResponse"
             android:layout_height="50dip"

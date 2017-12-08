@@ -11,10 +11,17 @@ import android.widget.Toast;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.List;
+
+import mihai.spotify2.DAL.DAL;
+import mihai.spotify2.DAL.SongDatabase;
+import mihai.spotify2.Model.SongEntity;
 
 public class SongList extends AppCompatActivity {
 
     static final int UPDATE_CODE = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +30,7 @@ public class SongList extends AppCompatActivity {
 
         final ListView listView=(ListView)findViewById(R.id.List);
 
-        ArrayList<Song> songs = SongArray.getInstance().getArray();
+        List<SongEntity> songs = MainActivity.songs;
 
         final CustomAdapter adapter= new CustomAdapter(this, songs);
 
@@ -33,7 +40,7 @@ public class SongList extends AppCompatActivity {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = listView.getItemAtPosition(position);
-                Song song= (Song)o;
+                SongEntity song= (SongEntity)o;
 
                 Intent i = new Intent(SongList.this, Details.class);
 
@@ -51,6 +58,8 @@ public class SongList extends AppCompatActivity {
         Intent i = new Intent(SongList.this, Propose.class);
 
         startActivity(i);
+
+        finish();
 
     }
 }
