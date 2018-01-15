@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mihai.spotify2.MainActivity">
-
+    tools:context="mihai.spotify2.RegisterActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -13,10 +12,10 @@
         android:layout_height="fill_parent">
 
         <TextView
-            android:id="@+id/Login"
+            android:id="@+id/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/loginTitle"
+            android:text="@string/registerTitle"
             android:textSize="10pt">
         </TextView>
 
@@ -36,22 +35,20 @@
             android:layout_width="fill_parent">
         </EditText>
 
-        <Button
-            android:id="@+id/LoginButton"
-            android:layout_height="wrap_content"
-            android:text="@string/loginButtonText"
-            android:onClick="loginUser"
+        <CheckBox
+            android:id="@+id/PremiumUser"
+            android:layout_height="50dip"
+            android:text="@string/premium"
             android:layout_width="fill_parent">
-        </Button>
+        </CheckBox>
 
         <Button
-            android:id="@+id/RegisterButton"
+            android:id="@+id/SubmitButton"
             android:layout_height="wrap_content"
-            android:text="@string/registerButtonText"
+            android:text="@string/submitButtonText"
             android:onClick="registerUser"
             android:layout_width="fill_parent">
         </Button>
 
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>

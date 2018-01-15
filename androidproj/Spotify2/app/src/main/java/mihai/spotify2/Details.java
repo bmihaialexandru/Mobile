@@ -25,6 +25,10 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -33,11 +37,20 @@ import mihai.spotify2.Model.SongEntity;
 
 public class Details extends AppCompatActivity {
     SongEntity song;
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference songsReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         Intent intent = getIntent();
         song = (SongEntity) intent.getSerializableExtra("song");
@@ -92,7 +105,7 @@ public class Details extends AppCompatActivity {
 
         final String genre=Integer.toString(((NumberPicker)findViewById(R.id.selectGenre)).getValue());
 
-        final SongEntity s=new SongEntity(0,title, artist,genre);
+        final SongEntity s=new SongEntity(0,title, artist,genre, song.fireKey);
 
         for (SongEntity i : MainActivity.songs){
             if (Objects.equals(i.title, song.title) && Objects.equals(i.artist, song.artist)){
@@ -100,6 +113,8 @@ public class Details extends AppCompatActivity {
                 break;
             }
         }
+
+
         MainActivity.songs.add(s);
 
         new AsyncTask<Void, Void, Void>() {
@@ -114,6 +129,10 @@ public class Details extends AppCompatActivity {
                 return null;
             }
         }.execute();
+
+
+        songsReference = firebaseDatabase.getReference("songs").child(s.fireKey);
+        songsReference.setValue(s);
 
         Intent i = new Intent(Details.this, SongList.class);
 
@@ -137,6 +156,10 @@ public class Details extends AppCompatActivity {
 
                 for (SongEntity i : MainActivity.songs){
                     if (Objects.equals(i.title, song.title) && Objects.equals(i.artist, song.artist)){
+
+                        songsReference = firebaseDatabase.getReference("songs").child(i.fireKey);
+                        songsReference.setValue(null);
+
                         MainActivity.songs.remove(i);
                         break;
                     }
@@ -147,6 +170,7 @@ public class Details extends AppCompatActivity {
                     @Override
                     protected Void doInBackground(Void... voids) {
                         MainActivity.dal.delete(MainActivity.dal.getSong(song.title,song.artist));
+
                         return null;
                     }
                 }.execute();

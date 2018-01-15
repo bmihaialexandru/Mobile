@@ -22,11 +22,14 @@ public class SongEntity implements Serializable {
     public String artist;
     public String genre;
 
+    public String fireKey;
 
-    public SongEntity(int id,String title,String artist, String genre) {
+
+    public SongEntity(int id,String title,String artist, String genre, String fireKey) {
         this.artist = artist;
         this.title= title;
         this.id= id;
         this.genre=genre;
+        this.fireKey=fireKey;
     }
 }

@@ -10,9 +10,19 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import mihai.spotify2.Model.SongEntity;
 
 public class Propose extends AppCompatActivity {
+
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference songsReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +42,20 @@ public class Propose extends AppCompatActivity {
 
         final String genre=Integer.toString(((NumberPicker)findViewById(R.id.selectGenre)).getValue());
 
-        MainActivity.songs.add(new SongEntity(0,name,artist,genre));
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        songsReference = firebaseDatabase.getReference("songs");
+        DatabaseReference push = songsReference.push();
+        final String key = push.getKey();
+        SongEntity songEntity = new SongEntity(0, name, artist, genre, key);
+        push.setValue(songEntity);
+
+        MainActivity.songs.add(new SongEntity(0,name,artist,genre, key));
 
         new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                MainActivity.dal.add(new SongEntity(0,name,artist,genre));
+                MainActivity.dal.add(new SongEntity(0,name,artist,genre, key));
                 return null;
             }
         }.execute();
@@ -57,6 +74,8 @@ public class Propose extends AppCompatActivity {
                 Toast.makeText(Propose.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
             }
         }
+
+
 
         Intent i = new Intent(Propose.this, SongList.class);
 

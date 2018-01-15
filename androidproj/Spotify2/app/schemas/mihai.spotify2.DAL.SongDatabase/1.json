@@ -2,31 +2,41 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b63e3a8ebe2a6f5a3644a193b4442838",
+    "identityHash": "5e41b4b34e558fdb03687ffbe067209e",
     "entities": [
       {
         "tableName": "SongEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `artist` TEXT, `genre` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `artist` TEXT, `genre` TEXT, `fireKey` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "title",
             "columnName": "title",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "artist",
             "columnName": "artist",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "genre",
             "columnName": "genre",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fireKey",
+            "columnName": "fireKey",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -41,7 +51,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b63e3a8ebe2a6f5a3644a193b4442838\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"5e41b4b34e558fdb03687ffbe067209e\")"
     ]
   }
 }

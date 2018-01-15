@@ -11,4 +11,11 @@
     <string name="proposeButtonText">Propose A Song</string>
     <string name="deleteButtonText">Delete</string>
     <string name="startApp">Start App</string>
+    <string name="registerTitle">Register</string>
+    <string name="premium">Premium User</string>
+    <string name="userName">UserName</string>
+    <string name="password">Password</string>
+    <string name="registerButtonText">Register</string>
+    <string name="loginButtonText">Log In</string>
+    <string name="loginTitle">Authentication</string>
 </resources>
